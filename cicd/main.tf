@@ -48,12 +48,12 @@ module "nexus" {
   subnet_id = "subnet-003f9e3a9ec29d47a" #replace your Subnet
   ami = data.aws_ami.nexus_ami_info.id
   key_name = aws_key_pair.tools.key_name
-  root_block_device = [
+  root_block_device = 
     {
       volume_type = "gp3"
       volume_size = 30
     }
-  ]
+  
   tags = {
     Name = "nexus"
   }
