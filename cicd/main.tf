@@ -38,28 +38,29 @@ resource "aws_key_pair" "tools" {
 }
 
 
-module "nexus" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
+# module "nexus" {
+#   source  = "terraform-aws-modules/ec2-instance/aws"
 
-  name = "nexus"
+#   name = "nexus"
 
-  instance_type          = "t3.small"
-  vpc_security_group_ids = ["sg-0cab6b9e7e0937b11"] #replace your SG
-  subnet_id = "subnet-003f9e3a9ec29d47a" #replace your Subnet
-  ami = data.aws_ami.nexus_ami_info.id
-  key_name = aws_key_pair.tools.key_name
-  root_block_device = 
-    {
-      volume_type = "gp3"
-      volume_size = 30
-    }
-  
-  tags = {
-    Name = "nexus"
-  }
+#   instance_type          = "t3.small"
+#   vpc_security_group_ids = ["sg-0cab6b9e7e0937b11"] #replace your SG
+#   subnet_id = "subnet-003f9e3a9ec29d47a" #replace your Subnet
+#   ami = data.aws_ami.nexus_ami_info.id
+#   key_name = aws_key_pair.tools.key_name
+#   root_block_device = {
+#       volume_type = "gp3"
+#       volume_size = 30
+#     }
   
   
-}
+#   instance_tags = {
+#   Name = "nexus"
+# }
+
+  
+  
+#}
 
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
@@ -86,16 +87,16 @@ module "records" {
       ]
       allow_overwrite = true
     },
-    {
-      name    = "nexus"
-      type    = "A"
-      ttl     = 1
-      allow_overwrite = true
-      records = [
-        module.nexus.private_ip
-      ]
-      allow_overwrite = true
-    }
+    # {
+    #   name    = "nexus"
+    #   type    = "A"
+    #   ttl     = 1
+    #   allow_overwrite = true
+    #   records = [
+    #     module.nexus.private_ip
+    #   ]
+    #   allow_overwrite = true
+    # }
   ]
 
 }
