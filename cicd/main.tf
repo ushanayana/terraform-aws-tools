@@ -29,13 +29,13 @@ module "jenkins_agent" {
   }
 }
 
-resource "aws_key_pair" "tools" {
-  key_name   = "tools"
-  # you can paste the public key directly like this
-  #public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL/EYXhkubgb3WuAjDsaTWNcuF76fP24dApVykLRJvql Usha@DESKTOP-09GJKR9"
-  public_key = file("~/.ssh/nexus.pub")
-  # ~ means windows home directory
-}
+# resource "aws_key_pair" "tools" {
+#   key_name   = "tools"
+#   # you can paste the public key directly like this
+#   #public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL/EYXhkubgb3WuAjDsaTWNcuF76fP24dApVykLRJvql Usha@DESKTOP-09GJKR9"
+#   public_key = file("~/.ssh/nexus.pub")
+#   # ~ means windows home directory
+# }
 
 
 # module "nexus" {
